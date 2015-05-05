@@ -45,12 +45,14 @@ public class ConnectServlet extends HttpServlet {
 		if (request.getAttribute("isShare") != null) {
 			if ((int)request.getAttribute("isShare") == 1) {
 				this.numberOfActiveUsers = (int) request.getAttribute("numberOfActiveUsers");
-				this.activeUsers = (ArrayList<String>) request.getAttribute("activeUsers");
 				return;
 			}
 		}
 		
+		
+		Map<String, String[]> paramsDict = request.getParameterMap();
 		String uid = request.getParameter("uid");
+		
 		if (uid != null && !this.activeUsers.contains(uid)){
 			activeUsers.add(uid);
 			this.numberOfActiveUsers++;

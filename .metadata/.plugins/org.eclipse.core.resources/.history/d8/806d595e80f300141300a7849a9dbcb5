@@ -50,7 +50,10 @@ public class ConnectServlet extends HttpServlet {
 			}
 		}
 		
+		
+		Map<String, String[]> paramsDict = request.getParameterMap();
 		String uid = request.getParameter("uid");
+		
 		if (uid != null && !this.activeUsers.contains(uid)){
 			activeUsers.add(uid);
 			this.numberOfActiveUsers++;

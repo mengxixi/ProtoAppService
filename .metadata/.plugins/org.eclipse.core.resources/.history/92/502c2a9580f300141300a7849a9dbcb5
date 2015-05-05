@@ -1,8 +1,7 @@
 package com.srk.pkg;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MyServlet
+ * Servlet implementation class DisconnectServlet
  */
-@WebServlet("/ConnectServlet")
-public class ConnectServlet extends HttpServlet {
+@WebServlet("/DisconnectServlet")
+public class DisconnectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int numberOfActiveUsers = 0;
 	private ArrayList<String> activeUsers = new ArrayList<String>();
-
-	private static final int MAX_USERS = 6;
-	
-	
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public ConnectServlet() {
+    public DisconnectServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -41,7 +38,7 @@ public class ConnectServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		if (request.getAttribute("isShare") != null) {
 			if ((int)request.getAttribute("isShare") == 1) {
 				this.numberOfActiveUsers = (int) request.getAttribute("numberOfActiveUsers");
@@ -52,8 +49,8 @@ public class ConnectServlet extends HttpServlet {
 		
 		String uid = request.getParameter("uid");
 		if (uid != null && !this.activeUsers.contains(uid)){
-			activeUsers.add(uid);
-			this.numberOfActiveUsers++;
+			activeUsers.remove(uid);
+			this.numberOfActiveUsers;
 
 			request.setAttribute("numberOfActiveUsers", this.numberOfActiveUsers);
 			request.setAttribute("activeUsers", this.activeUsers);
@@ -64,28 +61,13 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("current # of active users: " + this.numberOfActiveUsers + "\n");
 			
 		}
-
-		
-		while (this.numberOfActiveUsers != MAX_USERS) {
-			
-		}
-		
-		if (this.numberOfActiveUsers == MAX_USERS){
-			System.out.println("GOT ENOUGH!!!!");
-			/// TODO: assign teams to the six users
-			/// TODO: randomly select a questioning team
-			/// TODO: assign a captain to the questioning team
-			/// TODO: 
-		}
-		
-//		response.setContentType("application/json");
-//		PrintWriter out1 = response.getWriter();
-//		String jsonObject = "{\"messssssage\": \"hahahahhahaha\"}";
-//		out1.print(jsonObject);
-//		out1.flush();
-//		
 		
 		
+		this.numberOfActiveUsers--;
+		request.setAttribute("isShare", 1);
+		request.setAttribute("numberOfActiveUsers", this.numberOfActiveUsers);
+		request.getRequestDispatcher("/ConnectServlet").forward(request, response);
+				
 	}
 
 }
