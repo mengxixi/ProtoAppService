@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+/Users/Liltri/Desktop/ProtoApp Workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2546261904.index
+981496205.index
+336135261.index
+3924355380.index
+222796016.index
+764301650.index
+2001483460.index
