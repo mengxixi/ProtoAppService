@@ -38,7 +38,7 @@ public class MyServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		Map<String, String[]> paramsDict = request.getParameterMap();
-		System.out.print("uid is" + paramsDict.get("uid"));
+		System.out.print(paramsDict.get("uid"));
 		
 		response.setContentType("application/json");
 		PrintWriter out1 = response.getWriter();

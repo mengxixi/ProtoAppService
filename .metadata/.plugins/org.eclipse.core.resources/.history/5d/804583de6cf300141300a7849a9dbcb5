@@ -1,8 +1,7 @@
 package com.srk.pkg;
 
+import java.io.IOException;
 import java.io.*;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +36,7 @@ public class MyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Map<String, String[]> paramsDict = request.getParameterMap();
-		System.out.print("uid is" + paramsDict.get("uid"));
+		Map<K,V> paramsDict = request.getParameterMap();
 		
 		response.setContentType("application/json");
 		PrintWriter out1 = response.getWriter();
