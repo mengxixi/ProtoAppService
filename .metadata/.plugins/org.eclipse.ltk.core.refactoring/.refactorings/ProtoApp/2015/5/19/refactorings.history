@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.srk.pkg.MyServlet&apos; to &apos;ConnectServlet&apos;&#x0A;- Original project: &apos;ProtoApp&apos;&#x0A;- Original element: &apos;com.srk.pkg.MyServlet&apos;&#x0A;- Renamed element: &apos;com.srk.pkg.ConnectServlet&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;MyServlet&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.srk.pkg{MyServlet.java[MyServlet" matchStrategy="1" name="ConnectServlet" qualified="false" references="true" similarDeclarations="false" stamp="1430861808513" textual="false" version="1.0"/>
+</session>
