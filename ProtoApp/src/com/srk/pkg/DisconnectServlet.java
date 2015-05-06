@@ -39,27 +39,17 @@ public class DisconnectServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getAttribute("isShare") != null) {
-			if ((int)request.getAttribute("isShare") == 1) {
-				this.numberOfActiveUsers = (int) request.getAttribute("numberOfActiveUsers");
-				this.activeUsers = (ArrayList<String>) request.getAttribute("activeUsers");
-				return;
-			}
-		}
-		
 		String uid = request.getParameter("uid");
-		if (uid != null && !this.activeUsers.contains(uid)){
+		if (uid != null){// && !this.activeUsers.contains(uid)){	/****************/
 			activeUsers.remove(uid);
 			this.numberOfActiveUsers--;
 
-			request.setAttribute("numberOfActiveUsers", this.numberOfActiveUsers);
-			request.setAttribute("activeUsers", this.activeUsers);
-			request.setAttribute("isShare", 1);
-			request.getRequestDispatcher("/DisconnectServlet").forward(request, response);
+			this.getServletContext().setAttribute("numberOfActiveUsers", this.numberOfActiveUsers);
+			this.getServletContext().setAttribute("activeUsers", this.activeUsers);
 			
 			System.out.println("uid is: " + uid + "\n");
 			System.out.println("current # of active users: " + this.numberOfActiveUsers + "\n");
-			
+
 		}
 				
 	}

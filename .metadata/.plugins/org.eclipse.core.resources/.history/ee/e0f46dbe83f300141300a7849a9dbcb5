@@ -54,18 +54,19 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("current # of active users: " + this.numberOfActiveUsers + "\n");
 
 		}
+
 		
-//		while (this.numberOfActiveUsers != MAX_USERS) {
-//			
-//		}
-		
-		if (this.numberOfActiveUsers == MAX_USERS){
-			System.out.println("GOT ENOUGH!!!!");
-			/// TODO: assign teams to the six users
-			/// TODO: randomly select a questioning team
-			/// TODO: assign a captain to the questioning team
-			/// TODO: 
+		while (this.numberOfActiveUsers != MAX_USERS) {
+			
 		}
+		
+//		if (this.numberOfActiveUsers == MAX_USERS){
+//			System.out.println("GOT ENOUGH!!!!");
+//			/// TODO: assign teams to the six users
+//			/// TODO: randomly select a questioning team
+//			/// TODO: assign a captain to the questioning team
+//			/// TODO: 
+//		}
 		
 		response.setContentType("application/json");
 		PrintWriter out1 = response.getWriter();

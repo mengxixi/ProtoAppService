@@ -54,10 +54,11 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("current # of active users: " + this.numberOfActiveUsers + "\n");
 
 		}
+
 		
-//		while (this.numberOfActiveUsers != MAX_USERS) {
-//			
-//		}
+		while (this.numberOfActiveUsers != MAX_USERS) {
+			
+		}
 		
 		if (this.numberOfActiveUsers == MAX_USERS){
 			System.out.println("GOT ENOUGH!!!!");
