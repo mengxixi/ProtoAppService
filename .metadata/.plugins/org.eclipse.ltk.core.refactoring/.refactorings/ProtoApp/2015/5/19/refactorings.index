@@ -1,1 +1,6 @@
 1430861808513	Rename type 'MyServlet'
+1430871298397	Delete element
+1430871368619	Encapsulate field 'members'
+1430871376403	Encapsulate field 'isQuestioning'
+1430871654455	Encapsulate field 'score'
+1430872269798	Encapsulate field 'captain'

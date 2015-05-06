@@ -74,14 +74,14 @@ public class ConnectServlet extends HttpServlet {
 			team1.setQuestioning(rbool);
 			team2.setQuestioning(!rbool);
 	
-			// assign a captain to the questioning team
+			/// TODO: assign a captain to the questioning team
 			if (team1.isQuestioning()){
 				team1.selectCaptain();
 			} else {
 				team2.selectCaptain();
 			}
 			
-			/// TODO: return appropriate result to the users (different response if captain/normalUser, questining/answering team)
+			/// TODO: 
 		}
 		
 		response.setContentType("application/json");

@@ -2,15 +2,14 @@ package com.srk.pkg;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
-
-import com.srk.pkg.Team;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  * Servlet implementation class MyServlet
  */
@@ -19,8 +18,6 @@ public class ConnectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int numberOfActiveUsers = 0;
 	private ArrayList<String> activeUsers = new ArrayList<String>();
-	private Team team1 = new Team();
-	private Team team2 = new Team();
 
 	private static final int MAX_USERS = 6;
 	
@@ -64,24 +61,10 @@ public class ConnectServlet extends HttpServlet {
 		
 		if (this.numberOfActiveUsers == MAX_USERS){
 			System.out.println("GOT ENOUGH!!!!");
-			//assign teams to the six users
-			this.team1.setMembers((ArrayList<String>)this.activeUsers.subList(0, 2));
-			this.team2.setMembers((ArrayList<String>)this.activeUsers.subList(3, 5));
-			
-			//randomly select a questioning team
-			Random rgen = new Random(System.currentTimeMillis());
-			boolean rbool = rgen.nextBoolean();
-			team1.setQuestioning(rbool);
-			team2.setQuestioning(!rbool);
-	
-			// assign a captain to the questioning team
-			if (team1.isQuestioning()){
-				team1.selectCaptain();
-			} else {
-				team2.selectCaptain();
-			}
-			
-			/// TODO: return appropriate result to the users (different response if captain/normalUser, questining/answering team)
+			/// TODO: assign teams to the six users
+			/// TODO: randomly select a questioning team
+			/// TODO: assign a captain to the questioning team
+			/// TODO: 
 		}
 		
 		response.setContentType("application/json");
@@ -89,9 +72,9 @@ public class ConnectServlet extends HttpServlet {
 		String jsonObject = "{\"messssssage\": \"hahahahhahaha\"}";
 		out1.print(jsonObject);
 		out1.flush();
+//		
 		
 		
 	}
-	
-}
 
+}

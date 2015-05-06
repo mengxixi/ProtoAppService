@@ -81,7 +81,7 @@ public class ConnectServlet extends HttpServlet {
 				team2.selectCaptain();
 			}
 			
-			/// TODO: return appropriate result to the users (different response if captain/normalUser, questining/answering team)
+			/// TODO: 
 		}
 		
 		response.setContentType("application/json");

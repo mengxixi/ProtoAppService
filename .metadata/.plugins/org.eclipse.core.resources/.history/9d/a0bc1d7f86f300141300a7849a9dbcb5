@@ -64,24 +64,16 @@ public class ConnectServlet extends HttpServlet {
 		
 		if (this.numberOfActiveUsers == MAX_USERS){
 			System.out.println("GOT ENOUGH!!!!");
-			//assign teams to the six users
+			/// TODO: assign teams to the six users
 			this.team1.setMembers((ArrayList<String>)this.activeUsers.subList(0, 2));
 			this.team2.setMembers((ArrayList<String>)this.activeUsers.subList(3, 5));
 			
-			//randomly select a questioning team
-			Random rgen = new Random(System.currentTimeMillis());
-			boolean rbool = rgen.nextBoolean();
-			team1.setQuestioning(rbool);
-			team2.setQuestioning(!rbool);
-	
-			// assign a captain to the questioning team
-			if (team1.isQuestioning()){
-				team1.selectCaptain();
-			} else {
-				team2.selectCaptain();
-			}
+			/// TODO: randomly select a questioning team
+			Random rgen = new Random();
+			boolean isQuestioning = rgen.nextBoolean(System.currentTimeMillis());
 			
-			/// TODO: return appropriate result to the users (different response if captain/normalUser, questining/answering team)
+			/// TODO: assign a captain to the questioning team
+			/// TODO: 
 		}
 		
 		response.setContentType("application/json");
@@ -92,6 +84,5 @@ public class ConnectServlet extends HttpServlet {
 		
 		
 	}
-	
-}
 
+}
