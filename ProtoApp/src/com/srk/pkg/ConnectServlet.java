@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 /**
  * Servlet implementation class MyServlet
  */
@@ -66,7 +69,9 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("GOT ENOUGH!!!!");
 			//assign teams to the six users
 			this.team1.setMembers((ArrayList<String>)this.activeUsers.subList(0, 2));
+			this.team1.setTeamNumber(1);
 			this.team2.setMembers((ArrayList<String>)this.activeUsers.subList(3, 5));
+			this.team2.setTeamNumber(2);
 			
 			//randomly select a questioning team
 			Random rgen = new Random(System.currentTimeMillis());
@@ -81,14 +86,38 @@ public class ConnectServlet extends HttpServlet {
 				team2.selectCaptain();
 			}
 			
-			/// TODO: return appropriate result to the users (different response if captain/normalUser, questining/answering team)
+			// return information to the user in a json format
+			JSONObject json = new JSONObject();
+			int teamNum;
+			Boolean isQuestioning;
+			Boolean isCaptain;
+			
+			if (team1.getMembers().contains(uid)){
+				isQuestioning = team1.isQuestioning();
+				teamNum = 1;
+				isCaptain = team1.getCaptain().equals(uid);
+			} else {
+				isQuestioning = team2.isQuestioning();
+				teamNum = 2;
+				isCaptain = team2.getCaptain().equals(uid);
+			}
+			
+			try {
+				json.put("uid", uid)
+					.put("team_num", teamNum)
+					.put("is_questioning", isQuestioning)
+					.put("is_captain", isCaptain);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			response.setContentType("application/json");
+			PrintWriter out1 = response.getWriter();
+			out1.print(json.toString());
+			out1.flush();
+			
 		}
-		
-		response.setContentType("application/json");
-		PrintWriter out1 = response.getWriter();
-		String jsonObject = "{\"messssssage\": \"hahahahhahaha\"}";
-		out1.print(jsonObject);
-		out1.flush();
+
 		
 		
 	}

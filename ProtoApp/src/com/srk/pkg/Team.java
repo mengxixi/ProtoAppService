@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Team {
 	private ArrayList<String> members;
+	private int teamNumber;
 	private boolean isQuestioning;
 	private int score;
 	private String captain;
@@ -13,6 +14,7 @@ public class Team {
 		members = new ArrayList<String>();
 		isQuestioning = false;
 		score = 0;
+		captain = null;
 		
 	}
 	
@@ -54,6 +56,14 @@ public class Team {
 
 	public void setCaptain(String captain) {
 		this.captain = captain;
+	}
+
+	public int getTeamNumber() {
+		return teamNumber;
+	}
+
+	public void setTeamNumber(int teamNumber) {
+		this.teamNumber = teamNumber;
 	}
 
 }
