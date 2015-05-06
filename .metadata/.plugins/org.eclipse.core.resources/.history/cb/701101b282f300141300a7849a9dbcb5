@@ -70,13 +70,13 @@ public class ConnectServlet extends HttpServlet {
 //			
 //		}
 		
-//		if (this.numberOfActiveUsers == MAX_USERS){
-//			System.out.println("GOT ENOUGH!!!!");
-//			/// TODO: assign teams to the six users
-//			/// TODO: randomly select a questioning team
-//			/// TODO: assign a captain to the questioning team
-//			/// TODO: 
-//		}
+		if (this.numberOfActiveUsers == MAX_USERS){
+			System.out.println("GOT ENOUGH!!!!");
+			/// TODO: assign teams to the six users
+			/// TODO: randomly select a questioning team
+			/// TODO: assign a captain to the questioning team
+			/// TODO: 
+		}
 		
 		response.setContentType("application/json");
 		PrintWriter out1 = response.getWriter();

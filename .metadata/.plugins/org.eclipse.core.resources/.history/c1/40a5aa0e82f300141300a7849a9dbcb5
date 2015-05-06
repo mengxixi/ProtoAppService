@@ -51,7 +51,7 @@ public class ConnectServlet extends HttpServlet {
 		}
 		
 		String uid = request.getParameter("uid");
-		if (uid != null){// && !this.activeUsers.contains(uid)){
+		if (uid != null && !this.activeUsers.contains(uid)){
 			activeUsers.add(uid);
 			this.numberOfActiveUsers++;
 
@@ -66,23 +66,23 @@ public class ConnectServlet extends HttpServlet {
 		}
 
 		
-//		while (this.numberOfActiveUsers != MAX_USERS) {
-//			
-//		}
+		while (this.numberOfActiveUsers != MAX_USERS) {
+			
+		}
 		
-//		if (this.numberOfActiveUsers == MAX_USERS){
-//			System.out.println("GOT ENOUGH!!!!");
-//			/// TODO: assign teams to the six users
-//			/// TODO: randomly select a questioning team
-//			/// TODO: assign a captain to the questioning team
-//			/// TODO: 
-//		}
+		if (this.numberOfActiveUsers == MAX_USERS){
+			System.out.println("GOT ENOUGH!!!!");
+			/// TODO: assign teams to the six users
+			/// TODO: randomly select a questioning team
+			/// TODO: assign a captain to the questioning team
+			/// TODO: 
+		}
 		
-		response.setContentType("application/json");
-		PrintWriter out1 = response.getWriter();
-		String jsonObject = "{\"messssssage\": \"hahahahhahaha\"}";
-		out1.print(jsonObject);
-		out1.flush();
+//		response.setContentType("application/json");
+//		PrintWriter out1 = response.getWriter();
+//		String jsonObject = "{\"messssssage\": \"hahahahhahaha\"}";
+//		out1.print(jsonObject);
+//		out1.flush();
 //		
 		
 		
