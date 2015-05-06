@@ -25,7 +25,7 @@ public class ConnectServlet extends HttpServlet {
 	private Team team1 = new Team();
 	private Team team2 = new Team();
 
-	private static final int MAX_USERS = 2;
+	private static final int MAX_USERS = 6;
 	
 	
     /**
@@ -69,18 +69,14 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("GOT ENOUGH!!!!");
 			//assign teams to the six users
 			ArrayList<String> t1 = new ArrayList<String>();
-			for (int i=0; i<MAX_USERS/2; i++){
-				t1.add(this.activeUsers.get(i));
-			}
-
+			t1.add(this.activeUsers.get(0));
+			t1.add(this.activeUsers.get(1));
 			this.team1.setMembers(t1);
 			this.team1.setTeamNumber(1);
 			
 			ArrayList<String> t2 = new ArrayList<String>();
-			for (int i=MAX_USERS/2; i<this.activeUsers.size(); i++){
-				t2.add(this.activeUsers.get(i));
-			}
-
+			t2.add(this.activeUsers.get(2));
+			t2.add(this.activeUsers.get(3));
 			this.team2.setMembers(t2);
 			this.team2.setTeamNumber(2);
 			
