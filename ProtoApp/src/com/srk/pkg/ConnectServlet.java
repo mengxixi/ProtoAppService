@@ -6,14 +6,14 @@ import java.util.Random;
 
 import com.srk.pkg.Team;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 /**
  * Servlet implementation class MyServlet
  */
@@ -25,7 +25,7 @@ public class ConnectServlet extends HttpServlet {
 	private Team team1 = new Team();
 	private Team team2 = new Team();
 
-	private static final int MAX_USERS = 6;
+	private static final int MAX_USERS = 4;
 	
 	
     /**
@@ -57,20 +57,27 @@ public class ConnectServlet extends HttpServlet {
 			this.getServletContext().setAttribute("activeUsers", this.activeUsers);
 			
 			System.out.println("uid is: " + uid + "\n");
-			System.out.println("current # of active users: " + this.numberOfActiveUsers + "\n");
+			System.out.println("current # of active users: " + this.activeUsers.size() + "\n");
 
 		}
 		
-//		while (this.numberOfActiveUsers != MAX_USERS) {
-//			
-//		}
+		while (this.activeUsers.size() != MAX_USERS) {
+			
+		}
 		
-		if (this.numberOfActiveUsers == MAX_USERS){
+		if (this.activeUsers.size() == MAX_USERS){
 			System.out.println("GOT ENOUGH!!!!");
 			//assign teams to the six users
-			this.team1.setMembers((ArrayList<String>)this.activeUsers.subList(0, 2));
+			ArrayList<String> t1 = new ArrayList<String>();
+			t1.add(this.activeUsers.get(0));
+			t1.add(this.activeUsers.get(1));
+			this.team1.setMembers(t1);
 			this.team1.setTeamNumber(1);
-			this.team2.setMembers((ArrayList<String>)this.activeUsers.subList(3, 5));
+			
+			ArrayList<String> t2 = new ArrayList<String>();
+			t2.add(this.activeUsers.get(2));
+			t2.add(this.activeUsers.get(3));
+			this.team2.setMembers(t2);
 			this.team2.setTeamNumber(2);
 			
 			//randomly select a questioning team
@@ -87,7 +94,6 @@ public class ConnectServlet extends HttpServlet {
 			}
 			
 			// return information to the user in a json format
-			JSONObject json = new JSONObject();
 			int teamNum;
 			Boolean isQuestioning;
 			Boolean isCaptain;
@@ -95,21 +101,18 @@ public class ConnectServlet extends HttpServlet {
 			if (team1.getMembers().contains(uid)){
 				isQuestioning = team1.isQuestioning();
 				teamNum = 1;
-				isCaptain = team1.getCaptain().equals(uid);
+				isCaptain = isQuestioning? team1.getCaptain().equals(uid) : false;
 			} else {
 				isQuestioning = team2.isQuestioning();
 				teamNum = 2;
-				isCaptain = team2.getCaptain().equals(uid);
+				isCaptain = isQuestioning? team2.getCaptain().equals(uid) : false;
 			}
 			
-			try {
-				json.put("uid", uid)
-					.put("team_num", teamNum)
-					.put("is_questioning", isQuestioning)
-					.put("is_captain", isCaptain);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			JsonObject json = Json.createObjectBuilder()
+					.add("uid", uid)
+					.add("team_num", teamNum)
+					.add("is_questioning", isQuestioning)
+					.add("is_captain", isCaptain).build();
 			
 			response.setContentType("application/json");
 			PrintWriter out1 = response.getWriter();
@@ -117,8 +120,6 @@ public class ConnectServlet extends HttpServlet {
 			out1.flush();
 			
 		}
-
-		
 		
 	}
 	

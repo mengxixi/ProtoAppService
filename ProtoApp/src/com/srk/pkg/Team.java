@@ -19,7 +19,7 @@ public class Team {
 	}
 	
 	public void selectCaptain() {
-		if (this.members.size() < 3) return;
+//		if (this.members.size() < 3) return;
 		Random rand = new Random(System.currentTimeMillis());
 	    int randomNum = rand.nextInt((2 - 0) + 1) + 0;
 	    captain = members.get(randomNum);
