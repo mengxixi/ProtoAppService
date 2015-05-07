@@ -60,63 +60,62 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("current # of active users: " + this.activeUsers.size() + "\n");
 
 		}
+		
+		while (this.activeUsers.size() != MAX_USERS) {
+			
+		}
+		
+		if (this.activeUsers.size() == MAX_USERS){
+			System.out.println("GOT ENOUGH!!!!");
+			//assign teams to the six users
+			ArrayList<String> t1 = new ArrayList<String>();
+			for (int i=0; i<MAX_USERS/2; i++){
+				t1.add(this.activeUsers.get(i));
+			}
 
-		if (this.numberOfActiveUsers != MAX_USERS){
+			this.team1.setMembers(t1);
+			this.team1.setTeamNumber(1);
+			
+			ArrayList<String> t2 = new ArrayList<String>();
+			for (int i=MAX_USERS/2; i<this.activeUsers.size(); i++){
+				t2.add(this.activeUsers.get(i));
+			}
+
+			this.team2.setMembers(t2);
+			this.team2.setTeamNumber(2);
+			
+			// select a questioning team and the corresponding captain
+			team1.setQuestioning(true);
+			team1.selectCaptain();
+			team2.setQuestioning(false);
+
+			// return information to the user in a json format
+			int teamNum;
+			Boolean isQuestioning;
+			Boolean isCaptain;
+			
+			if (team1.getMembers().contains(uid)){
+				isQuestioning = true;
+				isCaptain = team1.getCaptain().equals(uid);
+				teamNum = 1;
+			} else {
+				isQuestioning = false;
+				teamNum = 2;
+				isCaptain = false;
+			}
+			
 			JsonObject json = Json.createObjectBuilder()
-					.add("is_ready", false).build();
+					.add("uid", uid)
+					.add("team_num", teamNum)
+					.add("is_questioning", isQuestioning)
+					.add("is_captain", isCaptain).build();
+			
 			response.setContentType("application/json");
 			PrintWriter out1 = response.getWriter();
 			out1.print(json.toString());
 			out1.flush();
-			return;
+			
 		}
-		
-		System.out.println("GOT ENOUGH!!!!");
-		//assign teams to the six users
-		for (int i=0; i<this.activeUsers.size(); i++){
-			Random rand = new Random(System.currentTimeMillis());
-		    boolean isInTeam1 = rand.nextBoolean();
-		    String todo = this.activeUsers.get(i);
-		    
-		    if (isInTeam1 && this.team1.getMembers().size()<MAX_USERS/2) 
-		    	this.team1.getMembers().add(todo);
-		    else this.team2.getMembers().add(todo);
-		}
-		
-		this.team1.setTeamNumber(1);
-		this.team2.setTeamNumber(2);
-		
-		// select a questioning team and the corresponding captain
-		team1.setQuestioning(true);
-		team1.selectCaptain();
-		team2.setQuestioning(false);
-
-		// return information to the user in a json format
-		int teamNum;
-		Boolean isQuestioning;
-		Boolean isCaptain;
-		
-		if (team1.getMembers().contains(uid)){
-			isQuestioning = true;
-			teamNum = 1;
-			isCaptain = team1.getCaptain().equals(uid);
-		} else {
-			isQuestioning = false;
-			teamNum = 2;
-			isCaptain = false;
-		}
-		
-		JsonObject json = Json.createObjectBuilder()
-				.add("is_ready", true)
-				.add("uid", uid)
-				.add("team_num", teamNum)
-				.add("is_questioning", isQuestioning)
-				.add("is_captain", isCaptain).build();
-		
-		response.setContentType("application/json");
-		PrintWriter out1 = response.getWriter();
-		out1.print(json.toString());
-		out1.flush();
 		
 	}
 	

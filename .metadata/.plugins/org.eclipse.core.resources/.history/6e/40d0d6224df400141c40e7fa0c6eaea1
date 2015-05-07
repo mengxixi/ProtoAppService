@@ -60,15 +60,9 @@ public class ConnectServlet extends HttpServlet {
 			System.out.println("current # of active users: " + this.activeUsers.size() + "\n");
 
 		}
-
-		if (this.numberOfActiveUsers != MAX_USERS){
-			JsonObject json = Json.createObjectBuilder()
-					.add("is_ready", false).build();
-			response.setContentType("application/json");
-			PrintWriter out1 = response.getWriter();
-			out1.print(json.toString());
-			out1.flush();
-			return;
+		
+		while (this.activeUsers.size() != MAX_USERS) {
+			
 		}
 		
 		System.out.println("GOT ENOUGH!!!!");
@@ -107,7 +101,6 @@ public class ConnectServlet extends HttpServlet {
 		}
 		
 		JsonObject json = Json.createObjectBuilder()
-				.add("is_ready", true)
 				.add("uid", uid)
 				.add("team_num", teamNum)
 				.add("is_questioning", isQuestioning)
@@ -117,7 +110,6 @@ public class ConnectServlet extends HttpServlet {
 		PrintWriter out1 = response.getWriter();
 		out1.print(json.toString());
 		out1.flush();
-		
 	}
 	
 }

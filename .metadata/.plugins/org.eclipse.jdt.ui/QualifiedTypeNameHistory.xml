@@ -5,4 +5,8 @@
 <fullyQualifiedTypeName name="com.srk.pkg.Team"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="javax.json.JsonBuilderFactory"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="javax.json.JsonObject"/>
+<fullyQualifiedTypeName name="javax.json.Json"/>
 </qualifiedTypeNameHistroy>
