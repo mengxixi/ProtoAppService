@@ -1,10 +1,6 @@
 package com.srk.pkg;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ChooseColorServlet")
 public class ChooseColorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private int colorChosen = -1;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,35 +33,7 @@ public class ChooseColorServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int isFromCap = Integer.valueOf(request.getParameter("is_from_captain"));
-		if (isFromCap == 1) {
-			int colorID = Integer.valueOf(request.getParameter("color_chosen"));
-			if (this.colorChosen == -1) this.colorChosen = colorID;
-			return;
-			
-		} else {
-			if (this.colorChosen == -1) {
-				JsonObject json = Json.createObjectBuilder()
-						.add("is_color_ready", false).build();
-				response.setContentType("application/json");
-				PrintWriter out1 = response.getWriter();
-				out1.print(json.toString());
-				out1.flush();
-				return;
-			} else { 
-				
-				JsonObject json = Json.createObjectBuilder()
-						.add("is_color_ready", true)
-						.add("color_id", this.colorChosen).build();
-				response.setContentType("application/json");
-				PrintWriter out1 = response.getWriter();
-				out1.print(json.toString());
-				out1.flush();
-				return;
-			}
-
-		}
-		
+		// TODO Auto-generated method stub
 	}
 
 }

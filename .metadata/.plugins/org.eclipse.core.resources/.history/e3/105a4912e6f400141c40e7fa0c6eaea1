@@ -78,13 +78,9 @@ public class ConnectServlet extends HttpServlet {
 		    boolean isInTeam1 = rand.nextBoolean();
 		    String todo = this.activeUsers.get(i);
 		    
-		    if (this.team1.getMembers().size() < MAX_USERS/2) {
-		    	if (isInTeam1) this.team1.getMembers().add(todo);
-		    	else {
-		    		if (this.team2.getMembers().size() < MAX_USERS/2) this.team2.getMembers().add(todo);
-		    		else this.team1.getMembers().add(todo);
-		    	}
-		    } else this.team2.getMembers().add(todo);
+		    if (isInTeam1 && this.team1.getMembers().size()<MAX_USERS/2) 
+		    	this.team1.getMembers().add(todo);
+		    else this.team2.getMembers().add(todo);
 		}
 		
 		this.team1.setTeamNumber(1);

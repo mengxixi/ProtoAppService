@@ -56,7 +56,7 @@ public class ChooseColorServlet extends HttpServlet {
 			} else { 
 				
 				JsonObject json = Json.createObjectBuilder()
-						.add("is_color_ready", true)
+						.add("is_color_ready", true).
 						.add("color_id", this.colorChosen).build();
 				response.setContentType("application/json");
 				PrintWriter out1 = response.getWriter();
