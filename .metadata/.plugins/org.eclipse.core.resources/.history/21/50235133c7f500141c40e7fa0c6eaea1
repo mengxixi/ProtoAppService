@@ -49,7 +49,7 @@ public class ConnectServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String uid = request.getParameter("uid");
-		if (uid != null && !this.activeUsers.contains(uid)){	
+		if (uid != null && !this.activeUsers.contains(uid)){	/****************/
 			activeUsers.add(uid);
 			this.numberOfActiveUsers++;
 

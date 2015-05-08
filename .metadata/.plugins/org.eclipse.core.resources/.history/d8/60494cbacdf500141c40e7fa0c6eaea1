@@ -19,7 +19,7 @@ public class ScoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final int MAX_USERS = 4;
 
-	private int totalScore = 0;
+	private int totalScore = -1;
 	private int numberOfScoresSubmitted = 0;
        
     /**

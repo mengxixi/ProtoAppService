@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ScoreServlet")
 public class ScoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_USERS = 4;
+	private static final int MAX_USERS = 2;
 
-	private int totalScore = 0;
+	private int totalScore = -1;
 	private int numberOfScoresSubmitted = 0;
        
     /**
@@ -43,8 +43,7 @@ public class ScoreServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int isFromQuestioningTeam = Integer.valueOf(request.getParameter("is_questioning"));
 		int isWaitingForFeedback = Integer.valueOf(request.getParameter("is_waiting"));
-		int singleScore = Integer.valueOf(request.getParameter("my_score"));
-		System.out.println(singleScore);
+		int singleScore = Integer.valueOf(request.getParameter("my_sc"));
 		
 		if (isFromQuestioningTeam == 0){
 			if (isWaitingForFeedback == 0) {
@@ -59,7 +58,6 @@ public class ScoreServlet extends HttpServlet {
 		if (this.numberOfScoresSubmitted == MAX_USERS/2){
 			// got enough, send back
 			double averageScore = this.totalScore/(MAX_USERS/2);
-			System.out.println("avg score is: " + averageScore + "!!! \n");
 			
 			json = Json.createObjectBuilder()
 					.add("is_score_ready", true)
